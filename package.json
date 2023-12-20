@@ -1,0 +1,80 @@
+{
+  "name": "maslowutils",
+  "version": "0.0.1",
+  "type": "module",
+  "description": "An npm package for demonstration purposes using TypeScript to build for both the ECMAScript Module format (i.e. ESM or ES Module) and CommonJS Module format. It can be used in Node.js and browser applications.",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./lib/esm/types/index.d.ts",
+        "default": "./lib/esm/index.mjs"
+      },
+      "require": {
+        "types": "./lib/cjs/types/index.d.ts",
+        "default": "./lib/cjs/index.js"
+      }
+    }
+  },
+  "types": "./lib/cjs/types/index.d.ts",
+  "main": "./lib/cjs/index.js",
+  "files": [
+    "lib/**/*"
+  ],
+  "scripts": {
+    "first-push": "npm run git-init && git add . && git commit -m \"first commit\" && git branch -M main && git remote add origin https://github.com/MaslowCorporation/AwesomeNPMTemplate.git && git push -u origin main",
+    "git-init": "rimraf .git && git init",
+    "clean": "rimraf ./lib",
+    "build": "npm run clean && npm run build:esm && npm run build:cjs",
+    "build:esm": "tsc -p ./configs/tsconfig.esm.json && rename lib\\esm\\index.js index.mjs",
+    "build:cjs": "tsc -p ./configs/tsconfig.cjs.json",
+    "test": "mocha",
+    "semantic-release": "semantic-release",
+    "prepack": "npm run build",
+    "publish:test": "npm run build && npm version patch --no-git-tag-version && npm publish --registry http://localhost:4873",
+    "publish:production": "npm run build && npm version patch --no-git-tag-version && npm publish",
+    "push": "(git add . && git commit -m \"I'm a bigger pusher than Ice-T homie !!!\" && git push) || exit 0"
+  },
+  "release": {
+    "branches": [
+      "main"
+    ]
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lanouvelleecole/maslowutils.git"
+  },
+  "keywords": [
+    "npm",
+    "javascript",
+    "typescript",
+    "esm",
+    "cjs",
+    "nodejs",
+    "commonjs",
+    "ecmascript",
+    "beginner",
+    "example",
+    "demonstration"
+  ],
+  "author": "John Doe",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lanouvelleecole/maslowutils/issues"
+  },
+  "homepage": "https://github.com/lanouvelleecole/maslowutils#readme",
+  "devDependencies": {
+    "@types/i18n-js": "^3.8.4",
+    "move-cli": "^2.0.0",
+    "rimraf": "^5.0.1",
+    "semantic-release": "^19.0.3",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.7.4"
+  },
+  "dependencies": {
+    "i18n-js": "^4.3.0",
+    "axios": "^1.4.0"
+  }
+}
