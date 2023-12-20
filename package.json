@@ -44,7 +44,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/lanouvelleecole/maslowutils.git"
+    "url": "https://github.com/MaslowCorporation/maslowutils.git"
   },
   "keywords": [
     "npm",
@@ -62,9 +62,9 @@
   "author": "John Doe",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/lanouvelleecole/maslowutils/issues"
+    "url": "https://github.com/MaslowCorporation/maslowutils/issues"
   },
-  "homepage": "https://github.com/lanouvelleecole/maslowutils#readme",
+  "homepage": "https://github.com/MaslowCorporation/maslowutils#readme",
   "devDependencies": {
     "@types/i18n-js": "^3.8.4",
     "move-cli": "^2.0.0",
