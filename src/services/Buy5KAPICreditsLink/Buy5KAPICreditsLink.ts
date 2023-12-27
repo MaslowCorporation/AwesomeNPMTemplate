@@ -18,10 +18,10 @@ export default async function Buy5KAPICreditsLink({
   apiKey: string
 }): Promise<any | null> {
   try {
-    // debugger;
+    // 
 
     const response = await axios.post(
-      `${Constants.api_base_url_local}/checkout5000?apiKey=${apiKey}`,
+      `${Constants.api_base_url_web}/checkout5000?apiKey=${apiKey}`,
       params,
     );
 
@@ -54,7 +54,7 @@ export default async function Buy5KAPICreditsLink({
     // Handle network errors or exceptions
     print && console.error(app_strings.t("xlqkylp0Sfn3"), error?.response?.data);
 
-    RunIfPossible({ func: onError, args: error?.response?.data });
+    RunIfPossible({ func: onError, args: error });
 
     return null;
   }

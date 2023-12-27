@@ -1,4 +1,4 @@
-# AwesomeNPMTemplate 🌎
+# maslow-gpt-sdk 🌎
 
 An npm package for demonstration purposes using TypeScript to build for both the ECMAScript Module format (i.e. ESM or ES Module) and CommonJS Module format (CJS). It can be used in Node.js and browser applications.
 
@@ -81,7 +81,7 @@ npm run build; npm version patch --no-git-tag-version; npm publish --registry ht
 Une fois publié, tu peux l'installer la ou tu veux
 
 ```
-npx yarn add maslowutils@latest
+npx yarn add maslow-gpt-sdk@latest
 ```
 
 ## pour retourner en mode npm 'normal'

@@ -3,50 +3,50 @@ import axios from "axios";
 
 // @ts-ignore
 import { Constants } from "../../constants/constants.js";
+import { TestUpdateWorkData } from "./pieces/TestUpdateWorkData.js";
 
-export default async function GetAPIClientInfo({
+/**
+ *  
+ * Uncomment this code below, and run the 
+ * 
+ * npm run run-service UpdateWorkData
+ * 
+ * command to test this SDK method quickly and dirty ;-)
+ * 
+ *
+(async () => {
+  await TestUpdateWorkData();
+})();
+*/
+
+export default async function UpdateWorkData({
+  jobId,
   onSuccess,
   onError,
   apiKey,
-  params,
   print = true,
+  params,
 }: {
+  jobId?: string;
   onSuccess?: (output: any) => void;
   onError?: (error: Error) => void;
   apiKey: string;
-  params?: any;
   print?: boolean;
-}): Promise<string | null> {
+  params: any;
+}): Promise<any | null> {
   try {
-    // 
+    print && console.log("Let's get the background job status for " + jobId);
 
-
-    // Send the POST request with the FormData,
-    // if your request uploads data to the server.
-    //
-    // otherwise, don't send the POST request with a FormData, 
-    // but instead
-    // send an object like this: { prop1, prop2, .... }
     const response = await axios.post(
-      `${Constants.api_base_url_web}/get_api_client_info?apiKey=${apiKey}`,
-
-      // !!!!!!!!!!!!! IMPORTANT, READ THIS !!!!!!!!!!!!!!!!!!!!!!!!!!!
-      // Uncomment the formData below, and remove the objet below it,
-      // IF YOU WANT TO UPLOAD A FILE (photo, video, etc...)
-      //formData
-
-      // !!!!!!!!!!!!! IMPORTANT, READ THIS !!!!!!!!!!!!!!!!!!!!!!!!!!!
-      // This objet is used if the request doesn't send a file
-      // If your request sends a file to the server, 
-      // remove the object below, and uncomment formData above
-      { params }
+      `${Constants.api_base_url_web}/update_work_data/${jobId}?apiKey=${apiKey}`,
+      params,
     );
 
     const responseData = response.data;
     const prettyResponseData = JSON.stringify(responseData, null, 2);
 
     if (response.status >= 200 && response.status < 300) {
-      const answer = responseData.answer;
+      const answer = responseData;
 
       // Success (2xx response)
       print && console.log("Request succeeded!");
@@ -81,3 +81,5 @@ export default async function GetAPIClientInfo({
     return null;
   }
 }
+
+

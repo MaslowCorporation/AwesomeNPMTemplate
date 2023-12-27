@@ -1,5 +1,5 @@
-const chatModels = ["gpt-4", "gpt-4-32k", "gpt-3.5-turbo"];
-const completionModels = ["text-davinci-003"];
+const chatModels: string[] = ["gpt-4", "gpt-4-32k", "gpt-3.5-turbo"];
+const completionModels: string[] = [];
 
 /**
  * Ici, on stocke les constantes utiles dans notre template de question
@@ -22,9 +22,11 @@ export const Constants = {
   // ton phone n'est pas sur le meme réseau que ton ordi,
   // remplace si besoin cette ip par l'ip tailscale
   // de ton ordi (w10, ubuntu, macos etc...)
-  api_base_url_tailscale: "http://100.65.127.130:8080",
+  api_base_url_tailscale: "http://ip:port",
 
   // l'url de debug de production (l'url du serveur Linode)
   // for ze world wide web
-  api_base_url_web: "https://your_empire_url.com",
+  api_base_url_web: "https://your_url.com",
+
+  MASLOW_GPT_API_KEY: "<YOUR_API_KEY>"
 };

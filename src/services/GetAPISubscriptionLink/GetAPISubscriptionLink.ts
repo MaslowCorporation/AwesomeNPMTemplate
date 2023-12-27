@@ -15,11 +15,11 @@ export default async function GetAPISubscriptionLink({
   params?: any
 }): Promise<any | null> {
   try {
-    // debugger;
+    // 
 
 
     const response = await axios.post(
-      `${Constants.api_base_url_local}/checkout`,
+      `${Constants.api_base_url_web}/checkout`,
       params,
     );
 
