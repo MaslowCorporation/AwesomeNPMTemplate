@@ -25,7 +25,7 @@
     "git-init": "rimraf .git && git init",
     "clean": "rimraf ./lib",
     "build": "npm run clean && npm run build:esm && npm run build:cjs",
-    "build:esm": "tsc -p ./configs/tsconfig.esm.json && rename lib\\esm\\index.js index.mjs",
+    "build:esm": "tsc -p ./configs/tsconfig.esm.json && node -e \"const fs = require('fs'); fs.renameSync('lib/esm/index.js', 'lib/esm/index.mjs');\"",
     "build:cjs": "tsc -p ./configs/tsconfig.cjs.json",
     "test": "mocha",
     "semantic-release": "semantic-release",
