@@ -38,7 +38,7 @@ export default async function UpdateWorkData({
     print && console.log("Let's get the background job status for " + jobId);
 
     const response = await axios.post(
-      `${Constants.api_base_url_web}/update_work_data/${jobId}?apiKey=${apiKey}`,
+      `${Constants.api_base_url_local}/update_work_data/${jobId}?apiKey=${apiKey}`,
       params,
     );
 

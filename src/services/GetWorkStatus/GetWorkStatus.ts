@@ -36,7 +36,7 @@ export default async function GetWorkStatus({
     print && console.log("Let's get the background job status for " + jobId);
 
     const response = await axios.post(
-      `${Constants.api_base_url_web}/get_work_status/${jobId}?apiKey=${apiKey}`,
+      `${Constants.api_base_url_local}/get_work_status/${jobId}?apiKey=${apiKey}`,
     );
 
     const responseData = response.data;

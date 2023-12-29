@@ -19,7 +19,7 @@ export default async function GetAPISubscriptionLink({
 
 
     const response = await axios.post(
-      `${Constants.api_base_url_web}/checkout`,
+      `${Constants.api_base_url_local}/checkout`,
       params,
     );
 
