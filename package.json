@@ -33,7 +33,7 @@
     "prepack": "npm run build",
     "publish:test": "npm run build && npm version patch --no-git-tag-version && npm publish --registry http://localhost:4873",
     "publish:production": "npm run build && npm version patch --no-git-tag-version && npm publish",
-    "push": "(git checkout main && git add . && git commit -m \"I'm a bigger pusher than Ice-T homie !!!\" && git push) || exit 0",
+    "push": "(git add . && git commit -m \"I'm a bigger pusher than Ice-T homie !!!\" && git push) || exit 0",
 
     
     "run-service": "node runCompiledMethod.js"
