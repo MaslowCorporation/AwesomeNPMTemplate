@@ -28,7 +28,7 @@ export default async function GetAPIClientInfo({
     // but instead
     // send an object like this: { prop1, prop2, .... }
     const response = await axios.post(
-      `${Constants.api_base_url_local}/get_api_client_info?apiKey=${apiKey}`,
+      `${Constants.api_base_url_web}/get_api_client_info?apiKey=${apiKey}`,
 
       // !!!!!!!!!!!!! IMPORTANT, READ THIS !!!!!!!!!!!!!!!!!!!!!!!!!!!
       // Uncomment the formData below, and remove the objet below it,

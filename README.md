@@ -1,8 +1,10 @@
 # maslow-gpt-sdk 🌎
 
-An npm package for demonstration purposes using TypeScript to build for both the ECMAScript Module format (i.e. ESM or ES Module) and CommonJS Module format (CJS). It can be used in Node.js and browser applications.
+An npm package for demonstration purposes using TypeScript to build for both the ECMAScript Module format (i.e. ESM or ES Module) and CommonJS Module format (CJS). 
 
-Now it's time to make it yours !!!
+It can be used in any Javascript application.
+
+Now it's time to make it yours !
 
 ## Get Started
 

@@ -11,11 +11,11 @@ declare module 'i18next' {
 }
 
 
-const translations = {
+const translations =  {
   en: {
     translation: {
       /* PLOP_INJECT_SRC_STRING */
-
+      
       "xhpzrpkYg": "The program:",
       "xl4Ab8WU": "\"File upload in progress! Please wait, darling...\"",
       "xhpzrpkY": "The function:",
@@ -30,11 +30,11 @@ const translations = {
       "country": "The string 'fr' does not require translation as it appears to be a language code for French.",
       "x7CTz5XP": "Translation of object in progress...",
       "xWtfTMu": "Text translation in progress.... Please wait...",
-      "x8H4nyVx": "Attempt No.",
+      "x8H4nyVx": "Tentative No.",
       "xlqZy0Sf": "Text translation successful!",
       "xlqky0Sfn3": "Unable to translate this text",
       "xlqkylp0Sfn3": "An error has occurred",
-
+      
       /* PLOP_INJECT_SRC_END */
     }
   },

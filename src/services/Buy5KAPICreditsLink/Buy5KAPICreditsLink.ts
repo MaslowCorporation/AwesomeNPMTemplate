@@ -21,7 +21,7 @@ export default async function Buy5KAPICreditsLink({
     // 
 
     const response = await axios.post(
-      `${Constants.api_base_url_local}/checkout5000?apiKey=${apiKey}`,
+      `${Constants.api_base_url_web}/checkout5000?apiKey=${apiKey}`,
       params,
     );
 

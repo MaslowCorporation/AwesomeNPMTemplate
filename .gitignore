@@ -105,5 +105,8 @@ dist
 
 .dccache
 .DS_Store
-lib
+
 *.tgz
+
+# package-lock.json qui pue
+package-lock.json
