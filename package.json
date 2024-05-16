@@ -1,0 +1,81 @@
+{
+  "name": "maslow-gpt-sdk",
+  "version": "0.0.71",
+  "type": "module",
+  "description": "An npm package for demonstration purposes using TypeScript to build for both the ECMAScript Module format (i.e. ESM or ES Module) and CommonJS Module format. It can be used in Node.js and browser applications.",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./lib/esm/types/index.d.ts",
+        "default": "./lib/esm/index.mjs"
+      },
+      "require": {
+        "types": "./lib/cjs/types/index.d.ts",
+        "default": "./lib/cjs/index.js"
+      }
+    }
+  },
+  "types": "./lib/cjs/types/index.d.ts",
+  "main": "./lib/cjs/index.js",
+  "files": [
+    "lib/**/*"
+  ],
+  "scripts": {
+    "reset-main-branch": "git checkout --orphan latest_branch && git add -A && git commit -am \"First commit ;-)\" && git branch -D main && git branch -m main && git push -f --set-upstream origin main",
+    "first-push": "npm run git-init && git add . && git commit -m \"first commit\" && git branch -M main && git remote add origin <GITHUB_URL> && git push -u origin main",
+    "git-init": "rimraf .git && git init",
+    "clean": "rimraf ./lib",
+    "build": "npm run clean && npm run build:esm && npm run build:cjs",
+    "build:esm": "tsc -p ./configs/tsconfig.esm.json && node -e \"const fs = require('fs'); fs.renameSync('lib/esm/index.js', 'lib/esm/index.mjs');\"",
+    "build:cjs": "tsc -p ./configs/tsconfig.cjs.json",
+    "test": "mocha",
+    "semantic-release": "semantic-release",
+    "prepack": "npm run build",
+    "publish:test": "npm run build && npm version patch --no-git-tag-version && npm publish --registry http://localhost:4873",
+    "publish:production": "npm run build && npm version patch --no-git-tag-version && npm publish",
+    "push": "(git add . && git commit -m \"I'm a bigger pusher than Ice-T homie !!!\" && git push) || exit 0",
+    "run-service": "node runCompiledMethod.js"
+  },
+  "release": {
+    "branches": [
+      "main"
+    ]
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "<GITHUB_URL>"
+  },
+  "keywords": [
+    "npm",
+    "javascript",
+    "typescript",
+    "esm",
+    "cjs",
+    "nodejs",
+    "commonjs",
+    "ecmascript",
+    "beginner",
+    "example",
+    "demonstration"
+  ],
+  "author": "John Doe",
+  "license": "MIT",
+  "bugs": {
+    "url": "<GITHUB_URL>/issues"
+  },
+  "homepage": "<GITHUB_URL>",
+  "devDependencies": {
+    "move-cli": "^2.0.0",
+    "rimraf": "^5.0.1",
+    "semantic-release": "^19.0.3",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.3.2"
+  },
+  "dependencies": {
+    "axios": "^1.4.0",
+    "i18next": "^23.7.6"
+  }
+}
