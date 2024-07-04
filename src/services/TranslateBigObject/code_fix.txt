@@ -1,0 +1,135 @@
+Add the following fixes to this code:
+
+import GetGPTCode from "../GetGPTCode/GetGPTCode";
+
+async function TranslateBigObject({
+  model_chosen,
+  obj,
+  language,
+  apiKey,
+  retries = 10,
+  progressIntervalMs = 1000,
+  onJobCreated,
+  onSuccess,
+  onError,
+  onProgress,
+  print = false,
+  jobId,
+}: {
+  model_chosen?: string;
+  apiKey: string;
+  obj: any;
+  language: string;
+  retries?: number;
+  progressIntervalMs: number,
+  onProgress?: (progress: any) => void;
+  onSuccess?: (output: any) => void;
+  onJobCreated?: (jobId: string) => void;
+  onError?: (error: any) => void;
+  print?: boolean;
+  jobId?: string;
+}): Promise<object | null> {
+  try {
+    
+
+    // Split obj into subobjects if it contains more than 15 keys
+    const subObjects: any = [];
+    if (Object.keys(obj).length > 15) {
+      let keys = Object.keys(obj);
+      while (keys.length > 0) {
+        subObjects.push(
+          keys.splice(0, 15).reduce((acc, key) => {
+            acc[key] = obj[key];
+            return acc;
+          }, {})
+        );
+      }
+    } else {
+      subObjects.push(obj);
+    }
+
+    
+
+    const translatedObjDataRawPromises = subObjects.map(async (individualSubObject) => {
+      return await GetGPTCode({
+        progressIntervalMs: 1000,
+        model_chosen,
+        prompt: `Translate all the key values of ${JSON.stringify(individualSubObject)} to ${language}`,
+        onSuccess: (chatGPTOutput) => { },
+        onProgress: (progress) => { },
+        onError: (e) => { },
+        apiKey,
+      });
+    });
+
+    
+
+    const translatedObjDataRawResults = await Promise.all(translatedObjDataRawPromises);
+
+    
+
+    if (translatedObjDataRawResults.some((result) => result === null)) {
+      throw new Error("The object translation failed. Try again");
+    }
+
+    
+
+    const translatedObjects = translatedObjDataRawResults.map((translatedObjDataRaw) => {
+      const codePartObj = JSON.parse(translatedObjDataRaw.answer.codePart);
+      return codePartObj;
+    });
+
+    
+
+    const bigTranslatedObject = Object.assign({}, ...translatedObjects);
+
+    
+
+    const totalCost = translatedObjDataRawResults.reduce(
+      (acc, translatedObjDataRaw) => {
+        const usage = translatedObjDataRaw.usage;
+        acc.inputCostDollar += usage.inputCostDollar;
+        acc.outputCostDollar += usage.outputCostDollar;
+        acc.feeDollar += usage.feeDollar;
+        acc.totalCostDollar += usage.totalCostDollar;
+        acc.totalCostAPICredits += usage.totalCostAPICredits;
+        acc.APICreditsLeft = usage.APICreditsLeft;
+        return acc;
+      },
+      {
+        inputCostDollar: 0,
+        outputCostDollar: 0,
+        feeDollar: 0,
+        totalCostDollar: 0,
+        totalCostAPICredits: 0,
+        APICreditsLeft: 0,
+      }
+    );
+
+    
+
+    const result = {
+      answer: bigTranslatedObject,
+      usage: totalCost,
+    };
+
+    
+
+    if (onSuccess) {
+      onSuccess(result);
+    }
+
+    return result;
+  } catch (error) {
+    
+
+    if (onError) {
+      onError(error);
+    }
+    return null;
+  }
+}
+
+
+Give me a version of this code where each call to GetGPTCode is done one after the other, not all at the same same time
+  
